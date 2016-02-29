@@ -41,7 +41,7 @@ int main(int argc, const char * argv[]) {
 	for (int i = 0; i < 26; i++)
 	{
 		freq >> ec.at(i);
-		ec.at(i) = (float)ec.at(i)/1000.0*(float)c_count;
+		//ec.at(i) = (float)ec.at(i)/1000.0*(float)c_count;
 	}
 	freq.close();
 	
@@ -91,7 +91,7 @@ int main(int argc, const char * argv[]) {
 				}
 				else
 				{
-					std::cout << (char)(*it + i);
+					std::cout << (char)(*it + i );
 				}
 			}
 			else

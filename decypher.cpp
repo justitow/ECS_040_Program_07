@@ -80,7 +80,7 @@ int main(int argc, const char * argv[]) {
 	
 	for (int i = 0; i < 26; i++)
 	{
-		std::cout << "Message " << i + 1 << " Chi: " << total_chi.at(i) << " Square: " << total_square.at(i) <<  std::endl;
+		std::cout << "shift " << i << " Chi: " << total_chi.at(i) << " Square: " << total_square.at(i) <<  std::endl;
 		for (std::string::iterator it = str.begin(); it < str.end(); it++)
 		{
 			if (std::toupper(*it) >= 'A' && std::toupper(*it) <= 'Z')

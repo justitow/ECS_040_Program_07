@@ -28,9 +28,6 @@ int main(int argc, const char * argv[]) {
 	std::vector<float> copy(26,0);
 	std::vector<int> six_index(6, 0);
 	
-	
-	
-	
 	for (int i = 0; i < (int)str.length(); i++)
 	{
 		if (std::toupper(str.at(i)) >= 'A' && std::toupper(str.at(i)) <= 'Z')

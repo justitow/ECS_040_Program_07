@@ -9,10 +9,12 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <string>
 #include <sstream>
 #include <cmath>
 #include <algorithm>
 
+using namespace std;
 
 int main(int argc, const char * argv[]) {
 
@@ -31,7 +33,7 @@ int main(int argc, const char * argv[]) {
 	std::ifstream inf(argv[1]);
 	std::stringstream buffer;
 	buffer << inf.rdbuf();
-	std::string str(buffer.str());
+	string str(buffer.str());
 	inf.close();
 	
 	

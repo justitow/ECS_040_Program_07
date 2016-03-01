@@ -20,10 +20,11 @@ int main(int argc, const char * argv[]) {
 
 	std::vector<int> fc(26, 0);
 	std::vector<float> ec(26, 0);
+	std::vector<float> scaled_ec(26, 0);
 	std::vector<float> chi(26, 0);
-	std::vector<float> total_chi(26, 0);
+	std::vector<float> total_chi(27, 0);
 	std::vector<float> square(26, 0);
-	std::vector<float> total_square(26, 0);
+	std::vector<float> total_square(27, 0);
 	
 	std::ifstream inf(argv[1]);
 	std::stringstream buffer;
@@ -41,7 +42,7 @@ int main(int argc, const char * argv[]) {
 	for (int i = 0; i < 26; i++)
 	{
 		freq >> ec.at(i);
-		//ec.at(i) = (float)ec.at(i)/1000.0*(float)c_count;
+		scaled_ec.at(i) = (float)ec.at(i)/1000.0*(float)c_count;
 	}
 	freq.close();
 	
@@ -70,13 +71,16 @@ int main(int argc, const char * argv[]) {
 				}
 			}
 			
-			chi.at(l_index) = powf(fc.at(l_index) - ec.at(l_index), 2.0)/(float)ec.at(l_index);
-			total_chi.at(shift) += chi.at(l_index);
+			
+			chi.at(l_index) = powf(fc.at(l_index) - scaled_ec.at(l_index), 2.0)/(float)scaled_ec.at(l_index);
+			total_chi.at(26-shift) += chi.at(l_index);
 
 			square.at(l_index) = ec.at(l_index) * (float)fc.at(l_index);
-			total_square.at(shift) += square.at(l_index);
+			total_square.at(26-shift) += square.at(l_index);
 		}
 	}
+	total_chi.at(0) = total_chi.at(26);
+	total_square.at(0) = total_chi.at(26);
 	
 	for (int i = 0; i < 26; i++)
 	{

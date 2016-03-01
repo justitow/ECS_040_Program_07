@@ -1,11 +1,3 @@
-//
-//  main.cpp
-//  ECS_040_Program_07
-//
-//  Created by Justin Weich on 2/25/16.
-//  Copyright © 2016 Justin Weich. All rights reserved.
-//
-
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -19,6 +11,12 @@ using namespace std;
 int main(int argc, const char * argv[]) {
 
 	int c_count =0;
+	
+	std::ifstream inf(argv[1]);
+	std::stringstream buffer;
+	buffer << inf.rdbuf();
+	string str(buffer.str());
+	inf.close();
 
 	std::vector<int> fc(26, 0);
 	std::vector<float> ec(26, 0);
@@ -30,11 +28,7 @@ int main(int argc, const char * argv[]) {
 	std::vector<float> copy(26,0);
 	std::vector<int> six_index(6, 0);
 	
-	std::ifstream inf(argv[1]);
-	std::stringstream buffer;
-	buffer << inf.rdbuf();
-	string str(buffer.str());
-	inf.close();
+	
 	
 	
 	for (int i = 0; i < (int)str.length(); i++)

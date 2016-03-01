@@ -41,7 +41,7 @@ int main(int argc, const char * argv[]) {
 			c_count++;
 	}
 	
-	std::ifstream freq("/Users/justin/Developer/ECS_040_Program_07/ECS_040_Program_07/frequencies");
+	std::ifstream freq("frequencies");
 	for (int i = 0; i < 26; i++)
 	{
 		freq >> ec.at(i);
@@ -87,11 +87,11 @@ int main(int argc, const char * argv[]) {
 	total_chi.erase(total_chi.begin() + 25);
 	total_square.erase(total_square.begin() + 25);
 	
-	copy = total_square;
+	copy = total_chi;
 	sort(copy.begin(), copy.end());
 	for (int i = 0; i < 6; i++)
 	{
-		six_index.at(i) = (int)(find(total_square.begin(), total_square.end(), copy.at(25 - i)) - total_square.begin());
+		six_index.at(i) = (int)(find(total_chi.begin(), total_chi.end(), copy.at(i)) - total_chi.begin());
 		//std::cout << pos << " ";
 	}
 	

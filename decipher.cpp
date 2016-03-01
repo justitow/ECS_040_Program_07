@@ -98,7 +98,7 @@ int main(int argc, const char * argv[]) {
 	int count = 1;
 	for (std::vector<int>::iterator pos = six_index.begin(); pos < six_index.end(); pos++)
 	{
-		std::cout << "shift " << *pos << " Chi: " << total_chi.at(*pos) << " Square: " << total_square.at(*pos) <<  std::endl;
+		//std::cout << "shift " << *pos << " Chi: " << total_chi.at(*pos) << " Square: " << total_square.at(*pos) <<  std::endl;
 		std::cout << "Deciphered message version #" << count << std::endl;
 		for (std::string::iterator it = str.begin(); it < str.end(); it++)
 		{

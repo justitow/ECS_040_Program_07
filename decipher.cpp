@@ -72,7 +72,7 @@ int main(int argc, const char * argv[])
 
 
       chi.at(l_index) = powf(fc.at(l_index) - scaled_ec.at(l_index), 2.0) /
-			(float)scaled_ec.at(l_index);
+      (float)scaled_ec.at(l_index);
       total_chi.at(26-shift) += chi.at(l_index);
 
       square.at(l_index) = ec.at(l_index) * (float)fc.at(l_index);
@@ -122,6 +122,7 @@ int main(int argc, const char * argv[])
       else // what am I doing with my life?
         std::cout << (char)(*it);
     } // fuck
+
     std::cout << std::endl;
     count++;
   } // for length of string

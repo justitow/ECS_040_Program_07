@@ -12,6 +12,7 @@
 #include <string>
 #include <sstream>
 #include <cmath>
+#include <algorithm>
 
 
 int main(int argc, const char * argv[]) {

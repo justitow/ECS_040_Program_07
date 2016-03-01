@@ -8,16 +8,14 @@
 
 using namespace std;
 
-int main(int argc, const char * argv[]) {
-
-  int c_count =0;
-
+int main(int argc, const char * argv[])
+{
+  int c_count = 0;
   std::ifstream inf(argv[1]);
   std::stringstream buffer;
   buffer << inf.rdbuf();
   string str(buffer.str());
   inf.close();
-
   std::vector<int> fc(26, 0);
   std::vector<float> ec(26, 0);
   std::vector<float> scaled_ec(26, 0);
@@ -25,7 +23,7 @@ int main(int argc, const char * argv[]) {
   std::vector<float> total_chi(27, 0);
   std::vector<float> square(26, 0);
   std::vector<float> total_square(27, 0);
-  std::vector<float> copy(26,0);
+  std::vector<float> copy(26, 0);
   std::vector<int> six_index(6, 0);
 
   for (int i = 0; i < (int)str.length(); i++)
@@ -39,7 +37,7 @@ int main(int argc, const char * argv[]) {
   for (int i = 0; i < 26; i++)
   {
     freq >> ec.at(i);
-    scaled_ec.at(i) = (float)ec.at(i)/1000.0*(float)c_count;
+    scaled_ec.at(i) = (float)ec.at(i) / 1000.0 * (float)c_count;
   } // for
   freq.close();
 
@@ -63,7 +61,7 @@ int main(int argc, const char * argv[]) {
             fc.at(l_index)++;
           } // not a letter
         } // doesn't need to be cycled
-        else
+        else // blargh
         {
 
           if (std::toupper(*it) == 'A' + l_index + shift)
@@ -113,12 +111,12 @@ int main(int argc, const char * argv[]) {
         {
           std::cout << (char)(*it + *pos - 26);
         } // i don't
-        else
+        else // this happened
         {
           std::cout << (char)(*it + *pos );
         } // even know
       } // what
-      else
+      else // what am I doing with my life?
         std::cout << (char)(*it);
     } // fuck
     std::cout << std::endl;
@@ -126,5 +124,4 @@ int main(int argc, const char * argv[]) {
   } // for length of string
 
   return 0;
-
 } // main

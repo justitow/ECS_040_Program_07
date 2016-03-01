@@ -41,7 +41,7 @@ int main(int argc, const char * argv[]) {
 			c_count++;
 	}
 	
-	std::ifstream freq("/Users/justin/Developer/ECS_040_Program_07/ECS_040_Program_07/frequencies");
+	std::ifstream freq("frequencies");
 	for (int i = 0; i < 26; i++)
 	{
 		freq >> ec.at(i);

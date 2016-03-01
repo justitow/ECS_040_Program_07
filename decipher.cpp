@@ -36,7 +36,7 @@ int main(int argc, const char * argv[]) {
 	inf.close();
 	
 	
-	for (int i = 0; i < str.length(); i++)
+	for (int i = 0; i < (int)str.length(); i++)
 	{
 		if (std::toupper(str.at(i)) >= 'A' && std::toupper(str.at(i)) <= 'Z')
 			c_count++;

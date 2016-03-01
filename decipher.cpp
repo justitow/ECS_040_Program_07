@@ -15,7 +15,7 @@ int main(int argc, const char * argv[]) {
 	std::ifstream inf(argv[1]);
 	std::stringstream buffer;
 	buffer << inf.rdbuf();
-	string str(buffer.str());
+  string str(buffer.str());
 	inf.close();
 
 	std::vector<int> fc(26, 0);

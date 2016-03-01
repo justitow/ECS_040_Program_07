@@ -39,9 +39,8 @@ int main(int argc, const char * argv[])
     freq >> ec.at(i);
     scaled_ec.at(i) = (float)ec.at(i) / 1000.0 * (float)c_count;
   } // for
+
   freq.close();
-
-
 
   for (int shift = 0; shift < 26; shift++)
   {
@@ -72,7 +71,8 @@ int main(int argc, const char * argv[])
       } // for length of string
 
 
-      chi.at(l_index) = powf(fc.at(l_index) - scaled_ec.at(l_index), 2.0)/(float)scaled_ec.at(l_index);
+      chi.at(l_index) = powf(fc.at(l_index) - scaled_ec.at(l_index), 2.0) /
+			(float)scaled_ec.at(l_index);
       total_chi.at(26-shift) += chi.at(l_index);
 
       square.at(l_index) = ec.at(l_index) * (float)fc.at(l_index);
@@ -90,13 +90,15 @@ int main(int argc, const char * argv[])
 
   for (int i = 0; i < 6; i++)
   {
-    six_index.at(i) = (int)(find(total_square.begin(), total_square.end(), copy.at(25-i)) - total_square.begin());
+    six_index.at(i) = (int)(find(total_square.begin(), total_square.end(),
+                            copy.at(25-i)) - total_square.begin());
     //std::cout << pos << " ";
   } // for six
 
   int count = 1;
 
-  for (std::vector<int>::iterator pos = six_index.begin(); pos < six_index.end(); pos++)
+  for (std::vector<int>::iterator pos = six_index.begin(); pos < six_index.end()
+       ; pos++)
   {
     //std::cout << "shift " << *pos << " Chi: " << total_chi.at(*pos) << " Square: " << total_square.at(*pos) <<  std::endl;
     std::cout << "Deciphered message version #" << count << std::endl;
@@ -111,6 +113,7 @@ int main(int argc, const char * argv[])
         {
           std::cout << (char)(*it + *pos - 26);
         } // i don't
+
         else // this happened
         {
           std::cout << (char)(*it + *pos );

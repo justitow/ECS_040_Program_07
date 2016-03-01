@@ -91,14 +91,14 @@ int main(int argc, const char * argv[]) {
 	sort(copy.begin(), copy.end());
 	for (int i = 0; i < 6; i++)
 	{
-		six_index.at(i) = (int)(find(total_square.begin(), total_square.end(), copy.at(25 - i)) - total_square.begin());
+		six_index.at(i) = (int)(find(total_square.begin(), total_square.end(), copy.at(25-i)) - total_square.begin());
 		//std::cout << pos << " ";
 	}
 	
 	int count = 1;
 	for (std::vector<int>::iterator pos = six_index.begin(); pos < six_index.end(); pos++)
 	{
-		//std::cout << "shift " << *pos << " Chi: " << total_chi.at(*pos) << " Square: " << total_square.at(*pos) <<  std::endl;
+		std::cout << "shift " << *pos << " Chi: " << total_chi.at(*pos) << " Square: " << total_square.at(*pos) <<  std::endl;
 		std::cout << "Deciphered message version #" << count << std::endl;
 		for (std::string::iterator it = str.begin(); it < str.end(); it++)
 		{

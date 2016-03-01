@@ -87,7 +87,7 @@ int main(int argc, const char * argv[]) {
 	total_square.erase(total_square.begin() + 25);
 	
 	copy = total_square;
-	std::sort(copy.begin(), copy.end());
+	sort(copy.begin(), copy.end());
 	for (int i = 0; i < 6; i++)
 	{
 		six_index.at(i) = (int)(find(total_square.begin(), total_square.end(), copy.at(25 - i)) - total_square.begin());

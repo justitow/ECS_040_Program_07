@@ -16,13 +16,13 @@ int main(int argc, const char * argv[])
   buffer << inf.rdbuf();
   string str(buffer.str());
   inf.close();
-  std::vector<int> fc(26, 0);
-  std::vector<float> ec(26, 0);
-  std::vector<float> scaled_ec(26, 0);
-  std::vector<float> chi(26, 0);
-  std::vector<float> total_chi(27, 0);
-  std::vector<float> square(26, 0);
-  std::vector<float> total_square(27, 0);
+  std::vector<int> fc(26, 0); // frequencies from argv[1]
+  std::vector<float> ec(26, 0); // frequencies from Sean's file
+  //std::vector<float> scaled_ec(26, 0);
+  //std::vector<float> chi(26, 0);
+  //std::vector<float> total_chi(27, 0);
+  std::vector<float> square(26, 0); // multiplying frequencies
+  std::vector<float> total_square(27, 0); // likelihood
   std::vector<float> copy(26, 0);
   std::vector<int> six_index(6, 0);
 
@@ -37,52 +37,52 @@ int main(int argc, const char * argv[])
   for (int i = 0; i < 26; i++)
   {
     freq >> ec.at(i);
-    scaled_ec.at(i) = (float)ec.at(i) / 1000.0 * (float)c_count;
+    //scaled_ec.at(i) = (float)ec.at(i) / 1000.0 * (float)c_count;
   } // for
 
   freq.close();
 
-  for (int shift = 0; shift < 26; shift++)
+  for (int shift = 0; shift < 26; shift++) // each shift
   {
 
-    for (int l_index = 0; l_index < 26; l_index++) //each letter
+    for (int l_index = 0; l_index < 26; l_index++) // each letter in alphabet
     {
       fc.at(l_index) = 0;
 
-      for (std::string::iterator it = str.begin(); it < str.end(); it++)
+      for (std::string::iterator it = str.begin(); it < str.end(); it++) // each char in string
       {
 
-        if ('A' + l_index + shift > 'Z')
+        if ('A' + l_index + shift > 'Z') // goes past Z
         {
 
           if (std::toupper(*it) == 'A' + l_index + shift - 26)
           {
-            fc.at(l_index)++;
+            fc.at(l_index)++; // counting letters
           } // not a letter
         } // doesn't need to be cycled
-        else // blargh
+        else // does not go past Z
         {
 
           if (std::toupper(*it) == 'A' + l_index + shift)
           {
-            fc.at(l_index)++;
+            fc.at(l_index)++; // counting letters
           } // not a letter
         } // else
       } // for length of string
 
 
-      chi.at(l_index) = powf(fc.at(l_index) - scaled_ec.at(l_index), 2.0) /
-      (float)scaled_ec.at(l_index);
-      total_chi.at(26-shift) += chi.at(l_index);
+      //chi.at(l_index) = powf(fc.at(l_index) - scaled_ec.at(l_index), 2.0) /
+      //(float)scaled_ec.at(l_index);
+      //total_chi.at(26-shift) += chi.at(l_index);
 
       square.at(l_index) = ec.at(l_index) * (float)fc.at(l_index);
       total_square.at(26-shift) += square.at(l_index);
     } // for letter in alphabet
   } // for shift
 
-  total_chi.at(0) = total_chi.at(26);
-  total_square.at(0) = total_chi.at(26);
-  total_chi.erase(total_chi.begin() + 25);
+  //total_chi.at(0) = total_chi.at(26);
+  //total_chi.erase(total_chi.begin() + 25);
+  //total_square.at(0) = total_chi.at(26);
   total_square.erase(total_square.begin() + 25);
 
   copy = total_square;
@@ -121,7 +121,7 @@ int main(int argc, const char * argv[])
       } // what
       else // what am I doing with my life?
         std::cout << (char)(*it);
-    } // fuck
+    } // 
 
     std::cout << std::endl;
     count++;

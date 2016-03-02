@@ -9,7 +9,6 @@ fi
 cd $1
 rm -f *.out *.o *esults.txt &> /dev/null
 
-echo "At this point the design checker is not being called, so only Makefile-Debug.mk is checked."  >> results.txt
 #echo "At this point this design checker does not check for new consts needed." >> results.txt
 #echo "The design checker used to check the files after the deadline WILL check for new consts."  >> results.txt
 
@@ -53,7 +52,7 @@ fi
 
 /home/ssdavis/40/cppChecker.sh $PWD | awk '/Processing/,/Violated File Details/' > styleResults.txt
 
-#designErrors=$( $testingDirectory/DesignChecker.sh $PWD $operationScore)
+designErrors=$( $testingDirectory/DesignChecker.sh $PWD $operationsScore)
 styleScore=$( awk '/Total Errors Occurs/ {printf"%d\n", 6 - $6}' styleResults.txt ) 
 
 if [[ $styleScore -lt 0 ]]; then
@@ -65,10 +64,10 @@ if [[ $warningScore -eq 0 ]]; then
 fi
 
 if [ ! -e designResults.txt ]; then
-#  echo "No design errors."  >> designResults.txt
-  designScore=0
+  echo "No design errors."  >> designResults.txt
+  designScore=10
 else
-#  designScore=$(( 10 - `cat designResults.txt | wc -l` ))
+  designScore=$(( 10 - `cat designResults.txt | wc -l` ))
 
   if [[  $designScore -lt 0 ]]; then
     $designScore=0
@@ -77,7 +76,7 @@ fi
 
 if [ -e Makefile-Debug.mk ] && grep decipher Makefile-Debug.mk &> /dev/null ; then
    (( designScore += 10 ))
-  echo "Makefile-Debug.mk OK"  >> designResults
+  echo "Makefile-Debug.mk OK"  >> designResults.txt
 else
    echo "No Makefile-Debug.mk with decipher.cpp in it found."  >> designResults.txt
 fi
